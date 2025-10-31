@@ -4,8 +4,38 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+alice:
+  email: alice@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+bob:
+  email: bob@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+charlie:
+  email: charlie@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# User with reset password token
+user_with_reset_token:
+  email: reset@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  reset_password_token: <%= Devise.token_generator.generate(User, :reset_password_token) %>
+  reset_password_sent_at: <%= Time.current %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# User with remember token
+user_with_remember_token:
+  email: remember@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  remember_created_at: <%= Time.current %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

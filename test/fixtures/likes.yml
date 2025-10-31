@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# test/fixtures/likes.yml
+
+# Remove all existing likes fixtures and replace with:
+
+# Alice likes first post
+like_1:
+  user: alice
+  post: first_post
+  created_at: <%= 2.hours.ago %>
+  updated_at: <%= 2.hours.ago %>
+
+# Bob likes second post (different post than Alice)
+like_2:
+  user: bob
+  post: second_post
+  created_at: <%= 1.hour.ago %>
+  updated_at: <%= 1.hour.ago %>
+
+# Charlie likes third post (different post than others)
+like_3:
+  user: charlie
+  post: third_post
+  created_at: <%= 30.minutes.ago %>
+  updated_at: <%= 30.minutes.ago %>

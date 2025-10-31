@@ -1,9 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  author: one
-  body: MyText
+first_post:
+  author: alice
+  body: "This is the first post content with some interesting thoughts."
+  created_at: <%= 3.hours.ago %>
+  updated_at: <%= 3.hours.ago %>
 
-two:
-  author: two
-  body: MyText
+second_post:
+  author: bob
+  body: "This is the second post with different content."
+  created_at: <%= 2.hours.ago %>
+  updated_at: <%= 2.hours.ago %>
+
+third_post:
+  author: charlie
+  body: "Another post from Charlie with great insights."
+  created_at: <%= 1.hour.ago %>
+  updated_at: <%= 1.hour.ago %>
+
+fourth_post:
+  author: alice
+  body: "Alice's second post about various topics."
+  created_at: <%= 30.minutes.ago %>
+  updated_at: <%= 30.minutes.ago %>
