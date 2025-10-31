@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bob_follows_charlie:
+  follower: bob
+  followed: charlie
+  created_at: <%= 1.day.ago %>
+
+charlie_follows_alice:
+  follower: charlie
+  followed: alice
+  created_at: <%= 12.hours.ago %>
