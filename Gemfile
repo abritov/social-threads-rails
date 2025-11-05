@@ -65,5 +65,3 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-
-gem "pg", "~> 1.6"
