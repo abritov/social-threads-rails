@@ -27,4 +27,9 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  has_one_attached :avatar
+  
+  #validates :avatar, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
+  #                   size: { less_than: 2.megabytes }
 end

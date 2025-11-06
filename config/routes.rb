@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   root "posts#index"
 
-  get "/profile", to: "profile#show"
+  get 'profile', to: 'profile#edit'
+  patch 'profile', to: 'profile#update'
+  put 'profile', to: 'profile#update'
 end
