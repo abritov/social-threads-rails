@@ -1,9 +1,8 @@
-<%= form_with(model: post, class: "contents") do |form| %>
+<%= form_with(model: post, class: "flex flex-col space-y-3", id: "post_form") do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul class="list-disc ml-6">
+    <div id="error_explanation" class="bg-red-50 text-red-700 px-3 py-2 text-sm font-medium rounded-lg">
+      <h2 class="font-bold mb-1">Oops! <%= pluralize(post.errors.count, "error") %> occurred:</h2>
+      <ul class="list-disc list-inside">
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,17 +10,25 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:author_id].none?, "border-red-400 focus:outline-red-600": post.errors[:author_id].any?}] %>
+  <div class="flex items-start space-x-3">
+    <% if user_signed_in? && current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar.url, class: "w-8 h-8 rounded-full object-cover border border-gray-200" %>
+    <% elsif user_signed_in? %>
+      <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm">
+        <%= current_user.email.first.capitalize %>
+      </div>
+    <% end %>
+
+    <%= form.text_area :body,
+        rows: 1,
+        placeholder: "Start a thread...",
+        class: "flex-grow resize-none overflow-hidden p-2 text-base border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder-gray-500",
+        data: { controller: "textarea-autogrow", action: "input->textarea-autogrow#resize" }
+    %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :body %>
-    <%= form.textarea :body, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:body].none?, "border-red-400 focus:outline-red-600": post.errors[:body].any?}] %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex justify-end pr-1">
+    <%= form.submit "Post",
+        class: "px-4 py-1.5 bg-black text-white rounded-full font-medium text-sm hover:bg-gray-800 transition-colors cursor-pointer" %>
   </div>
 <% end %>
