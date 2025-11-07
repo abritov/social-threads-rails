@@ -1,6 +1,6 @@
 <% content_for :title, "Profile" %>
 
-<div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -21,7 +21,7 @@
                 <%= image_tag @user.avatar, class: "w-20 h-20 rounded-full object-cover" %>
               <% else %>
                 <span class="text-lg font-bold text-gray-400">
-                  <%= @user.name_initials %>
+                  <%#= @user.name_initials %>
                 </span>
               <% end %>
             </div>
@@ -41,33 +41,12 @@
       </div>
 
       <!-- Name Field -->
-      <div>
-        <%= form.label :name, class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <%= form.text_field :name, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black", placeholder: "Enter your full name" %>
-      </div>
 
       <!-- Username Field -->
-      <div>
-        <%= form.label :username, class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <div class="mt-1 flex rounded-md shadow-sm">
-          <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-            @
-          </span>
-          <%= form.text_field :username, class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border border-gray-300 focus:outline-none focus:ring-black focus:border-black", placeholder: "username" %>
-        </div>
-      </div>
 
       <!-- Email Field -->
-      <div>
-        <%= form.label :email, class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <%= form.email_field :email, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black", placeholder: "your.email@example.com" %>
-      </div>
 
       <!-- Bio Field -->
-      <div>
-        <%= form.label :bio, class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <%= form.text_area :bio, rows: 4, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black", placeholder: "Tell us a little about yourself..." %>
-      </div>
 
       <!-- Form Actions -->
       <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
