@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,7 +12,14 @@ Rails.application.routes.draw do
 
   root "posts#index"
 
+  resources :posts do
+    resources :comments, shallow: true # Adds /comments/:id for show, edit, update, destroy
+    get 'comments_drawer', on: :member # /posts/:id/comments_drawer
+  end
+
   get 'profile', to: 'profile#edit'
   patch 'profile', to: 'profile#update'
   put 'profile', to: 'profile#update'
+
+  resources :users, only: [:show]
 end

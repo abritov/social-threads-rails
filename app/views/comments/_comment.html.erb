@@ -1,0 +1,13 @@
+<div id="<%= dom_id comment %>" class="flex items-start space-x-3 text-sm">
+  <% if comment.user.avatar.attached? %>
+    <%= image_tag comment.user.avatar.url, class: "w-6 h-6 rounded-full object-cover border border-gray-200" %>
+  <% else %>
+    <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-xs">
+      <%= comment.user.email.first.capitalize %>
+    </div>
+  <% end %>
+  <div class="flex-grow">
+    <div class="font-semibold text-gray-900"><%= comment.user.email %> <span class="text-gray-500 ml-1 font-normal">&bull; <%= time_ago_in_words(comment.created_at) %> ago</span></div>
+    <p class="text-gray-700 leading-snug"><%= comment.body %></p>
+  </div>
+</div>

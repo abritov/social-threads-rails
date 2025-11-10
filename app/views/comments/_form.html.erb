@@ -1,0 +1,32 @@
+<%= form_with(model: [post, comment], class: "flex flex-col space-y-3", id: "comment_form_post_#{post.id}") do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation_comment_<%= post.id %>" class="bg-red-50 text-red-700 px-3 py-2 text-sm font-medium rounded-lg">
+      <h2 class="font-bold mb-1">Error:</h2>
+      <ul class="list-disc list-inside">
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex items-start space-x-2">
+    <% if user_signed_in? && current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar.url, class: "w-7 h-7 rounded-full object-cover border border-gray-200" %>
+    <% elsif user_signed_in? %>
+      <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-xs">
+        <%= current_user.email.first.capitalize %>
+      </div>
+    <% end %>
+
+    <%= form.text_area :body,
+        rows: 1,
+        placeholder: "Add a comment...",
+        class: "flex-grow resize-none overflow-hidden p-2 text-sm border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder-gray-500",
+        data: { controller: "textarea-autogrow", action: "input->textarea-autogrow#resize" } %>
+  </div>
+
+  <div class="flex justify-end">
+    <%= form.submit "Reply", class: "px-3 py-1.5 bg-blue-600 text-white rounded-full font-medium text-sm hover:bg-blue-700 transition-colors cursor-pointer" %>
+  </div>
+<% end %>
