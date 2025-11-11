@@ -5,6 +5,21 @@ class CommentsController < ApplicationController
   def show
   end
 
+  def create
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(comment_params)
+    @comment.author = current_user
+    @comment.post = @post
+
+    if @comment.save
+      @comments = @post.comments.includes(:author).order(created_at: :asc)
+      render 'posts/comments_drawer', layout: false, status: :ok
+    else
+      @comments = @post.comments.includes(:author).order(created_at: :asc)
+      render 'posts/comments_drawer', layout: false, status: :unprocessable_entity
+    end
+  end
+
   def edit
   end
 
@@ -32,10 +47,10 @@ class CommentsController < ApplicationController
 
   private
     def set_comment
-      @comment = Comment.find(params.expect(:id))
+      @comment = Comment.find(params[:id])
     end
 
     def comment_params
-      params.expect(comment: [ :author_id, :post_id, :text ])
+      params.require(:comment).permit(:text)
     end
 end

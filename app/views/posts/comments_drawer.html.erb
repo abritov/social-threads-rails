@@ -19,12 +19,16 @@
               <%= comment.respond_to?(:author) ? comment.author.email : 'User' %>
               <span class="text-gray-500 ml-1 font-normal">&bull; <%= time_ago_in_words(comment.created_at) %> ago</span>
             </div>
-            <p class="text-gray-700 leading-snug"><%= comment.try(:body) || comment.try(:text) %></p>
+            <p class="text-gray-700 leading-snug"><%= comment.text %></p>
           </div>
         </div>
       <% end %>
     <% else %>
       <p class="text-gray-500">No comments yet.</p>
     <% end %>
+  </div>
+
+  <div class="border-t border-gray-200 p-4 bg-white">
+    <%= render "comments/form", post: @post, comment: Comment.new %>
   </div>
 </div>

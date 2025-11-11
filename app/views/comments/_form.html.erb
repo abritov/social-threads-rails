@@ -1,4 +1,8 @@
-<%= form_with(model: [post, comment], class: "flex flex-col space-y-3", id: "comment_form_post_#{post.id}") do |form| %>
+<%= form_with(model: [post, comment],
+              class: "flex flex-col space-y-3",
+              id: "comment_form_post_#{post.id}",
+              html: { "up-target": "#comments-drawer", "up-follow": "" },
+              data: { turbo: false }) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation_comment_<%= post.id %>" class="bg-red-50 text-red-700 px-3 py-2 text-sm font-medium rounded-lg">
       <h2 class="font-bold mb-1">Error:</h2>
@@ -19,7 +23,7 @@
       </div>
     <% end %>
 
-    <%= form.text_area :body,
+    <%= form.text_area :text,
         rows: 1,
         placeholder: "Add a comment...",
         class: "flex-grow resize-none overflow-hidden p-2 text-sm border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder-gray-500",
