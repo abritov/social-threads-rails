@@ -12,6 +12,13 @@ class PostsController < ApplicationController
   def show
   end
 
+  # GET /posts/:id/comments_drawer
+  def comments_drawer
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:author).order(created_at: :asc) if @post.respond_to?(:comments)
+    render layout: false
+  end
+
   # GET /posts/new
   def new
     @post = Post.new

@@ -20,9 +20,15 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     
+    <%# Unpoly CSS %>
+    <link rel="stylesheet" href="https://unpkg.com/unpoly@3.6.1/unpoly.min.css">
+    
     <%# Alpine.js with Turbo Drive adapter %>
     <script defer src="https://cdn.jsdelivr.net/npm/alpine-turbo-drive-adapter@2.2.0/dist/alpine-turbo-drive-adapter.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+    
+    <%# Unpoly JS %>
+    <script src="https://unpkg.com/unpoly@3.6.1/unpoly.min.js"></script>
     
     <%= javascript_importmap_tags %>
   </head>
@@ -33,3 +39,4 @@
     </main>
   </body>
 </html>
+
