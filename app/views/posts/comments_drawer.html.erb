@@ -28,7 +28,15 @@
     <% end %>
   </div>
 
-  <div class="border-t border-gray-200 p-4 bg-white">
-    <%= render "comments/form", post: @post, comment: Comment.new %>
-  </div>
+
+  <% if user_signed_in? %>
+    <div class="border-t border-gray-200 p-4 bg-white">
+      <%= render "comments/form", post: @post, comment: Comment.new %>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 text-center text-gray-600">
+      Please <%= link_to "sign in", new_user_session_path, class: "text-blue-600 hover:underline" %> to comment
+    </div>
+  <% end %>
+
 </div>
