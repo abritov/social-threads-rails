@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, shallow: true # Adds /comments/:id for show, edit, update, destroy
     get 'comments_drawer', on: :member # /posts/:id/comments_drawer
+    post 'toggle_like', on: :member
   end
 
   get 'profile', to: 'profile#edit'

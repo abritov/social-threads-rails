@@ -12,13 +12,6 @@ class PostsController < ApplicationController
   def show
   end
 
-  # GET /posts/:id/comments_drawer
-  def comments_drawer
-    @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:author).order(created_at: :asc) if @post.respond_to?(:comments)
-    render layout: false
-  end
-
   # GET /posts/new
   def new
     @post = Post.new
@@ -70,6 +63,32 @@ class PostsController < ApplicationController
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
       format.html { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /posts/:id/comments_drawer
+  def comments_drawer
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:author).order(created_at: :asc) if @post.respond_to?(:comments)
+    render layout: false
+  end
+
+  def toggle_like
+    @post = Post.find(params[:id])
+    # Post.last.likes.create(user_id: 1)
+    # @like = current_user.likes.build(post_id: params[:id])
+    @like = @post.likes.find_by(user: current_user)
+
+    if @like
+      # If the user already liked it, unlike it
+      @like.destroy
+    else
+      # If the user hasn't liked it, like it
+      @post.likes.create(user: current_user)
+    end
+
+    respond_to do |format|
+      format.html { render partial: "posts/post", locals: { post: @post }, layout: false } # Unpoly expects HTML fragment
     end
   end
 

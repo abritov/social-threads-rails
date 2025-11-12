@@ -21,9 +21,13 @@
   </div>
 
   <div class="flex items-center space-x-4 pt-2 border-t border-gray-100">
-    <%# Like button (you'll need to implement the actual like/unlike logic and routes) %>
-    <%# This is a placeholder for your like button and icon %>
-    <button class="flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-colors duration-200">
+    <%= link_to toggle_like_post_path(post), {
+                method: :post,
+                class: "flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-colors duration-200 focus:outline-none",
+                "up-target": "div##{dom_id post}",
+                "up-instant": "",
+                data: { turbo: false }
+              } do %> <%# 'do' is now correctly placed after the options hash %>
       <% if current_user && current_user.likes.exists?(post: post) %>
         <svg class="w-5 h-5 fill-current text-red-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -36,7 +40,7 @@
       <span class="text-sm font-medium">
         <%= post.likes.count %>
       </span>
-    </button>
+    <% end %>
     
     <%# Comments drawer trigger using Unpoly %>
     <%= link_to comments_drawer_post_path(post),
