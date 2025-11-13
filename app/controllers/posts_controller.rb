@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.includes(author: { avatar_attachment: :blob }).order(created_at: :desc)
     @post = Post.new
   end
 
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
   # GET /posts/:id/comments_drawer
   def comments_drawer
     @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:author).order(created_at: :asc) if @post.respond_to?(:comments)
+    @comments = @post.comments.includes(author: { avatar_attachment: :blob }).order(created_at: :asc) if @post.respond_to?(:comments)
     render layout: false
   end
 

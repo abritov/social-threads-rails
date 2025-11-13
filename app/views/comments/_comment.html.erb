@@ -1,6 +1,6 @@
 <div id="<%= dom_id comment %>" class="flex items-start space-x-3 text-sm">
   <% if comment.user.avatar.attached? %>
-    <%= image_tag comment.user.avatar.url, class: "w-6 h-6 rounded-full object-cover border border-gray-200" %>
+    <%= image_tag comment.user.avatar, class: "w-6 h-6 rounded-full object-cover border border-gray-200" %>
   <% else %>
     <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-xs">
       <%= comment.user.email.first.capitalize %>

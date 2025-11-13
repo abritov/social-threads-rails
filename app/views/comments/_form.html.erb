@@ -16,7 +16,7 @@
 
   <div class="flex items-start space-x-2">
     <% if user_signed_in? && current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar.url, class: "w-7 h-7 rounded-full object-cover border border-gray-200" %>
+      <%= image_tag current_user.avatar, class: "w-7 h-7 rounded-full object-cover border border-gray-200" %>
     <% elsif user_signed_in? %>
       <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-xs">
         <%= current_user.email.first.capitalize %>

@@ -11,7 +11,7 @@
       <% if user_signed_in? %>
         <%= link_to profile_path, class: "rounded-full p-2 bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors duration-200 shadow-sm" do %>
           <% if current_user.avatar.attached? %>
-            <%= image_tag current_user.avatar.url, class: "w-7 h-7 rounded-full object-cover" %>
+            <%= image_tag current_user.avatar, class: "w-7 h-7 rounded-full object-cover" %>
           <% else %>
             <div class="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold text-xs">
               <%= current_user.email.first.capitalize %>
