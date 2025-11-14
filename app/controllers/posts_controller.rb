@@ -60,9 +60,9 @@ class PostsController < ApplicationController
     @post.destroy!
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
       format.html { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
+      format.any  { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
     end
   end
 
@@ -95,11 +95,11 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params.expect(:id))
+      @post = Post.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.expect(post: [ :author_id, :body ])
+      params.require(:post).permit(:body)
     end
 end
