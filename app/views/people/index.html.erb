@@ -1,6 +1,8 @@
 <% content_for :title, "Find Users" %>
 
-<div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+  <%= link_to "← Back to Feed", root_path, class: "inline-block text-gray-600 hover:text-gray-900 mb-4 transition-colors duration-200" %>
+  
   <h1 class="font-bold text-3xl text-gray-900 mb-6">Find Users</h1>
 
   <% if @users.any? %>
