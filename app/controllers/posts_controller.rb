@@ -4,7 +4,16 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.includes(author: { avatar_attachment: :blob }).order(created_at: :desc)
+    if user_signed_in?
+      # Get posts from current user and users they follow
+      following_ids = current_user.following.pluck(:id)
+      @posts = Post.includes(author: { avatar_attachment: :blob })
+                   .where(author_id: [current_user.id, *following_ids])
+                   .order(created_at: :desc)
+    else
+      # Show all posts for non-authenticated users
+      @posts = Post.includes(author: { avatar_attachment: :blob }).order(created_at: :desc)
+    end
     @post = Post.new
   end
 
