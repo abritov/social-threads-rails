@@ -75,8 +75,6 @@ class PostsController < ApplicationController
 
   def toggle_like
     @post = Post.find(params[:id])
-    # Post.last.likes.create(user_id: 1)
-    # @like = current_user.likes.build(post_id: params[:id])
     @like = @post.likes.find_by(user: current_user)
 
     if @like
@@ -88,7 +86,7 @@ class PostsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render partial: "posts/post", locals: { post: @post }, layout: false } # Unpoly expects HTML fragment
+      format.html { render partial: "posts/like_button", locals: { post: @post }, layout: false }
     end
   end
 
