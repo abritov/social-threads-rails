@@ -1,0 +1,38 @@
+<% content_for :title, @user.email %>
+
+<div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div class="flex items-center space-x-4 min-w-0 flex-1">
+        <% if @user.avatar.attached? %>
+          <%= image_tag url_for_active_storage(@user.avatar), class: "w-20 h-20 rounded-full object-cover border border-gray-300 flex-shrink-0" %>
+        <% else %>
+          <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-2xl flex-shrink-0">
+            <%= @user.email.first.capitalize %>
+          </div>
+        <% end %>
+        <div class="min-w-0 flex-1">
+          <h1 class="font-bold text-2xl text-gray-900 break-words"><%= @user.email %></h1>
+        </div>
+      </div>
+
+      <% if user_signed_in? && current_user != @user %>
+        <div id="user_<%= @user.id %>_follow_button_container" class="flex-shrink-0">
+          <%= render "people/follow_button", user: @user, current_user: current_user %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="font-bold text-xl text-gray-900 mb-4">Posts</h2>
+  
+  <% if @posts.any? %>
+    <div class="space-y-4">
+      <% @posts.each do |post| %>
+        <%= render "posts/post", post: post %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center my-10 text-gray-600">No posts yet.</p>
+  <% end %>
+</div>

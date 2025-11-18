@@ -22,5 +22,10 @@ Rails.application.routes.draw do
   patch 'profile', to: 'profile#update'
   put 'profile', to: 'profile#update'
 
-  resources :users, only: [:show]
+  resources :people, only: [:index, :show] do
+    member do
+      post :follow 
+      delete :unfollow
+    end
+  end
 end
