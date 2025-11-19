@@ -6,16 +6,20 @@
      >
   
   <div class="flex items-center space-x-3">
-    <% if post.author.avatar.attached? %>
-      <%= image_tag post.author.avatar, class: "w-8 h-8 rounded-full object-cover border border-gray-300" %>
-    <% else %>
-      <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm">
-        <%= post.author.email.first.capitalize %>
-      </div>
+    <%= link_to person_path(post.author), class: "flex items-center space-x-3 group" do %>
+      <% if post.author.avatar.attached? %>
+        <%= image_tag post.author.avatar, class: "w-8 h-8 rounded-full object-cover border border-gray-300" %>
+      <% else %>
+        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm">
+          <%= post.author.email.first.capitalize %>
+        </div>
+      <% end %>
     <% end %>
     
     <div>
-      <span class="font-semibold text-gray-900"><%= post.author.email %></span>
+      <%= link_to person_path(post.author), class: "font-semibold text-gray-900" do %>
+        <span class=""><%= post.author.email %></span>
+      <% end %>
       <span class="text-gray-500 text-sm ml-2">&bull; <%= time_ago_in_words(post.created_at) %> ago</span>
     </div>
   </div>
