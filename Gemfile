@@ -73,3 +73,5 @@ gem "litestream", "~> 0.14.0"
 gem "aws-sdk-s3", "~> 1.203", require: false
 
 gem "faker", "~> 3.5"
+
+gem "mailtrap", "~> 2.5"

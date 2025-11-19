@@ -211,6 +211,8 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailtrap (2.5.0)
+      base64
     marcel (1.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
@@ -454,6 +456,7 @@ DEPENDENCIES
   jbuilder
   kamal
   litestream (~> 0.14.0)
+  mailtrap (~> 2.5)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
