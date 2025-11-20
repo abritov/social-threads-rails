@@ -37,6 +37,8 @@
     <main class="container mx-auto px-5 pt-2">
       <%= yield %>
     </main>
+    
+    <%= render "shared/snackbar" if flash[:notice].present? || flash[:alert].present? %>
   </body>
 </html>
 
