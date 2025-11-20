@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :send_welcome_email
+
   has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
@@ -32,4 +34,10 @@ class User < ApplicationRecord
   
   #validates :avatar, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
   #                   size: { less_than: 2.megabytes }
+
+  private
+
+  def send_welcome_email
+    MailtrapMailer.welcome_mail(self).deliver_later
+  end
 end
