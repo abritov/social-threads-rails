@@ -7,7 +7,10 @@
 
   <div class="flex justify-between items-center mb-6">
     <h1 class="font-bold text-3xl text-gray-900">Edit Profile</h1>
-    <%= link_to "Back to Feed", posts_path, class: "text-gray-600 hover:text-black font-medium" %>
+    <div class="flex items-center space-x-4"> <%# Added div to group "Back to Feed" and "Log out" buttons %>
+      <%= link_to "Back to Feed", posts_path, class: "text-gray-600 hover:text-black font-medium" %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black" %>
+    </div>
   </div>
 
   <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -27,7 +30,7 @@
             </div>
             <div class="absolute bottom-0 right-0 bg-black rounded-full p-1">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
             </div>
@@ -39,14 +42,6 @@
           <p class="text-xs text-gray-500 mt-1">JPG, GIF or PNG. Max size 2MB.</p>
         </div>
       </div>
-
-      <!-- Name Field -->
-
-      <!-- Username Field -->
-
-      <!-- Email Field -->
-
-      <!-- Bio Field -->
 
       <!-- Form Actions -->
       <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
