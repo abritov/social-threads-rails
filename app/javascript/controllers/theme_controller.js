@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme') || 'light'
     this.setTheme(savedTheme)
   }
@@ -14,11 +13,19 @@ export default class extends Controller {
   }
 
   setTheme(theme) {
+    const sunIcon = this.element.querySelector('.sun-icon')
+    const moonIcon = this.element.querySelector('.moon-icon')
+
     if (theme === 'dark') {
       document.body.classList.add('dark')
+      if (sunIcon) sunIcon.style.display = 'block'
+      if (moonIcon) moonIcon.style.display = 'none'
     } else {
       document.body.classList.remove('dark')
+      if (sunIcon) sunIcon.style.display = 'none'
+      if (moonIcon) moonIcon.style.display = 'block'
     }
     localStorage.setItem('theme', theme)
   }
 }
+
