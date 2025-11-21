@@ -36,6 +36,9 @@
       if (sunIcon) sunIcon.style.display = 'block';
       if (moonIcon) moonIcon.style.display = 'none';
     }
+    
+    // Trigger a custom event that the drawer can listen to
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
   }
   
   // Update icons on page load
