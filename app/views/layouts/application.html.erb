@@ -60,6 +60,38 @@
       .dark .dark\:hover\:file\:bg-gray-600:hover::file-selector-button { background-color: oklch(44.6% .03 256.802) !important; }
       .dark .dark\:block { display: block !important; }
       .dark .dark\:hidden { display: none !important; }
+      
+      /* Force dark mode on Unpoly drawer */
+      body.dark up-drawer-box {
+        background-color: oklch(27.8% .033 256.848) !important;
+      }
+      
+      body.dark #comments-drawer {
+        background-color: oklch(21% .034 264.665) !important;
+        color: oklch(96.7% .003 264.542) !important;
+      }
+      
+      body.dark #comments-drawer .bg-white {
+        background-color: oklch(27.8% .033 256.848) !important;
+      }
+      
+      body.dark #comments-drawer .text-gray-900,
+      body.dark #comments-drawer .text-gray-700,
+      body.dark #comments-drawer .text-gray-600 {
+        color: oklch(96.7% .003 264.542) !important;
+      }
+      
+      body.dark #comments-drawer .text-gray-500 {
+        color: oklch(70.7% .022 261.325) !important;
+      }
+      
+      body.dark #comments-drawer .border-gray-200 {
+        border-color: oklch(37.3% .034 259.733) !important;
+      }
+      
+      body.dark #comments-drawer .bg-gray-100 {
+        background-color: oklch(37.3% .034 259.733) !important;
+      }
     </style>
     
     <%# Unpoly CSS %>
@@ -82,6 +114,17 @@
           document.documentElement.classList.add('dark');
         }
       })();
+      
+      // Unpoly compiler for drawer theme
+      up.compiler('#comments-drawer', function(element) {
+        const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark');
+        if (isDark) {
+          element.classList.add('dark');
+          // Find the layer/overlay and add dark class
+          const layer = element.closest('[up-layer]');
+          if (layer) layer.classList.add('dark');
+        }
+      });
     </script>
   </head>
 
