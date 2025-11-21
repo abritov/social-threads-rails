@@ -20,6 +20,48 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     
+    <style>
+      /* Class-based dark mode */
+      body.dark { background-color: oklch(21% .034 264.665) !important; color: oklch(96.7% .003 264.542) !important; }
+      .dark .dark\:bg-gray-900 { background-color: oklch(21% .034 264.665) !important; }
+      .dark .dark\:bg-gray-800 { background-color: oklch(27.8% .033 256.848) !important; }
+      .dark .dark\:bg-gray-700 { background-color: oklch(37.3% .034 259.733) !important; }
+      .dark .dark\:bg-gray-600 { background-color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:bg-green-700 { background-color: oklch(52.7% .154 150.069) !important; }
+      .dark .dark\:bg-red-700 { background-color: oklch(50.5% .213 27.518) !important; }
+      .dark .dark\:bg-red-900\/20 { background-color: color-mix(in oklab, oklch(39.6% .141 25.723) 20%, transparent) !important; }
+      .dark .dark\:text-gray-100 { color: oklch(96.7% .003 264.542) !important; }
+      .dark .dark\:text-gray-200 { color: oklch(92.8% .006 264.531) !important; }
+      .dark .dark\:text-gray-300 { color: oklch(87.2% .01 258.338) !important; }
+      .dark .dark\:text-gray-400 { color: oklch(70.7% .022 261.325) !important; }
+      .dark .dark\:text-gray-500 { color: oklch(55.1% .027 264.364) !important; }
+      .dark .dark\:text-gray-600 { color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:text-blue-400 { color: oklch(70.7% .165 254.624) !important; }
+      .dark .dark\:text-red-400 { color: oklch(70.4% .191 22.216) !important; }
+      .dark .dark\:text-yellow-300 { color: oklch(90.5% .182 98.111) !important; }
+      .dark .dark\:border-gray-700 { border-color: oklch(37.3% .034 259.733) !important; }
+      .dark .dark\:border-gray-600 { border-color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:border-red-800 { border-color: oklch(44.4% .177 26.899) !important; }
+      .dark .dark\:border-red-900 { border-color: oklch(39.6% .141 25.723) !important; }
+      .dark .dark\:placeholder-gray-400::placeholder { color: oklch(70.7% .022 261.325) !important; }
+      .dark .dark\:placeholder-gray-500::placeholder { color: oklch(55.1% .027 264.364) !important; }
+      .dark .dark\:divide-gray-700 > :not(:last-child) { border-color: oklch(37.3% .034 259.733) !important; }
+      .dark .dark\:hover\:bg-gray-600:hover { background-color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:hover\:bg-gray-700:hover { background-color: oklch(37.3% .034 259.733) !important; }
+      .dark .dark\:hover\:text-gray-100:hover { color: oklch(96.7% .003 264.542) !important; }
+      .dark .dark\:hover\:text-gray-300:hover { color: oklch(87.2% .01 258.338) !important; }
+      .dark .dark\:hover\:text-blue-400:hover { color: oklch(70.7% .165 254.624) !important; }
+      .dark .dark\:hover\:text-red-400:hover { color: oklch(70.4% .191 22.216) !important; }
+      .dark .dark\:hover\:bg-blue-600:hover { background-color: oklch(54.6% .245 262.881) !important; }
+      .dark .dark\:focus\:ring-gray-500:focus { --tw-ring-color: oklch(55.1% .027 264.364) !important; }
+      .dark .dark\:focus\:ring-gray-600:focus { --tw-ring-color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:focus\:border-gray-500:focus { border-color: oklch(55.1% .027 264.364) !important; }
+      .dark .dark\:file\:bg-gray-700::file-selector-button { background-color: oklch(37.3% .034 259.733) !important; }
+      .dark .dark\:hover\:file\:bg-gray-600:hover::file-selector-button { background-color: oklch(44.6% .03 256.802) !important; }
+      .dark .dark\:block { display: block !important; }
+      .dark .dark\:hidden { display: none !important; }
+    </style>
+    
     <%# Unpoly CSS %>
     <link rel="stylesheet" href="https://unpkg.com/unpoly@3.6.1/unpoly.min.css">
     
@@ -31,6 +73,16 @@
     <script src="https://unpkg.com/unpoly@3.6.1/unpoly.min.js"></script>
     
     <%= javascript_importmap_tags %>
+    
+    <script>
+      // Apply saved theme immediately to prevent flash
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
 
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
