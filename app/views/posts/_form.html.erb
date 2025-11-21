@@ -1,6 +1,6 @@
 <%= form_with(model: post, class: "flex flex-col space-y-3", id: "post_form") do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-700 px-3 py-2 text-sm font-medium rounded-lg">
+    <div id="error_explanation" class="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 px-3 py-2 text-sm font-medium rounded-lg border border-red-200 dark:border-red-800">
       <h2 class="font-bold mb-1">Oops! <%= pluralize(post.errors.count, "error") %> occurred:</h2>
       <ul class="list-disc list-inside">
         <% post.errors.each do |error| %>
@@ -12,9 +12,9 @@
 
   <div class="flex items-start space-x-3">
     <% if user_signed_in? && current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar, class: "w-8 h-8 rounded-full object-cover border border-gray-200" %>
+      <%= image_tag current_user.avatar, class: "w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-700" %>
     <% elsif user_signed_in? %>
-      <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm">
+      <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold text-sm">
         <%= current_user.email.first.capitalize %>
       </div>
     <% end %>
@@ -22,13 +22,13 @@
     <%= form.text_area :body,
         rows: 1,
         placeholder: "Start a thread...",
-        class: "flex-grow resize-none overflow-hidden p-2 text-base border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder-gray-500",
+        class: "flex-grow resize-none overflow-hidden p-2 text-base border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 bg-transparent dark:text-gray-100",
         data: { controller: "textarea-autogrow", action: "input->textarea-autogrow#resize" }
     %>
   </div>
 
   <div class="flex justify-end pr-1">
     <%= form.submit "Post",
-        class: "px-4 py-1.5 bg-black text-white rounded-full font-medium text-sm hover:bg-gray-800 transition-colors cursor-pointer" %>
+        class: "px-4 py-1.5 bg-black dark:bg-gray-700 text-white rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors cursor-pointer" %>
   </div>
 <% end %>

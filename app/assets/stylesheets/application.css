@@ -8,3 +8,12 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@import "tailwindcss";
+
+@theme {
+  --color-gray-950: oklch(15% .034 264.665);
+  --color-red-950: oklch(25.8% .092 26.042);
+}
+
+@variant dark (.dark &);

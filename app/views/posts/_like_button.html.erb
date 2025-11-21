@@ -1,7 +1,7 @@
 <div id="post_likes_<%= post.id %>">
   <%= link_to toggle_like_post_path(post), {
               method: :post,
-              class: "flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-colors duration-200 focus:outline-none",
+              class: "flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 focus:outline-none",
               "up-target": "div#post_likes_#{post.id}",
               "up-instant": "",
               data: { turbo: false }

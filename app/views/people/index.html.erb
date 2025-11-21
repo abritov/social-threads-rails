@@ -1,24 +1,24 @@
 <% content_for :title, "Find Users" %>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-  <%= link_to "← Back to Feed", root_path, class: "inline-block text-gray-600 hover:text-gray-900 mb-4 transition-colors duration-200" %>
+  <%= link_to "← Back to Feed", root_path, class: "inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-4 transition-colors duration-200" %>
   
-  <h1 class="font-bold text-3xl text-gray-900 mb-6">Find Users</h1>
+  <h1 class="font-bold text-3xl text-gray-900 dark:text-gray-100 mb-6">Find Users</h1>
 
   <% if @users.any? %>
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 divide-y divide-gray-100">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
       <% @users.each do |user| %>
         <div class="flex items-center justify-between p-4 sm:p-5">
           <div class="flex items-center space-x-3">
             <%= link_to person_path(user), class: "flex items-center space-x-3 group" do %>
               <% if user.avatar.attached? %>
-                <%= image_tag url_for_active_storage(user.avatar), class: "w-10 h-10 rounded-full object-cover border border-gray-300" %>
+                <%= image_tag url_for_active_storage(user.avatar), class: "w-10 h-10 rounded-full object-cover border border-gray-300 dark:border-gray-600" %>
               <% else %>
-                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-base">
+                <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold text-base">
                   <%= user.email.first.capitalize %>
                 </div>
               <% end %>
-              <span class="font-semibold text-gray-900 group-hover:underline"><%= user.email %></span>
+              <span class="font-semibold text-gray-900 dark:text-gray-100 group-hover:underline"><%= user.email %></span>
             <% end %>
           </div>
 
@@ -28,12 +28,12 @@
               <%= render "people/follow_button", user: user, current_user: current_user %>
             </div>
           <% elsif !user_signed_in? %>
-            <span class="text-gray-500 text-sm">Sign in to follow</span>
+            <span class="text-gray-500 dark:text-gray-400 text-sm">Sign in to follow</span>
           <% end %>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p class="text-center my-10 text-gray-600">No other users found.</p>
+    <p class="text-center my-10 text-gray-600 dark:text-gray-400">No other users found.</p>
   <% end %>
 </div>
