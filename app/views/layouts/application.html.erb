@@ -61,13 +61,16 @@
       .dark .dark\:block { display: block !important; }
       .dark .dark\:hidden { display: none !important; }
       
-      /* Force dark mode on Unpoly drawer */
+      /* Dark mode on Unpoly drawer */
       body.dark up-drawer-box {
         background-color: oklch(27.8% .033 256.848) !important;
       }
       
       body.dark #comments-drawer {
         background-color: oklch(21% .034 264.665) !important;
+      }
+      
+      body.dark #comments-drawer * {
         color: oklch(96.7% .003 264.542) !important;
       }
       
@@ -75,22 +78,16 @@
         background-color: oklch(27.8% .033 256.848) !important;
       }
       
-      body.dark #comments-drawer .text-gray-900,
-      body.dark #comments-drawer .text-gray-700,
-      body.dark #comments-drawer .text-gray-600 {
-        color: oklch(96.7% .003 264.542) !important;
-      }
-      
-      body.dark #comments-drawer .text-gray-500 {
-        color: oklch(70.7% .022 261.325) !important;
+      body.dark #comments-drawer .bg-gray-100 {
+        background-color: oklch(37.3% .034 259.733) !important;
       }
       
       body.dark #comments-drawer .border-gray-200 {
         border-color: oklch(37.3% .034 259.733) !important;
       }
       
-      body.dark #comments-drawer .bg-gray-100 {
-        background-color: oklch(37.3% .034 259.733) !important;
+      body.dark #comments-drawer .text-gray-500 {
+        color: oklch(70.7% .022 261.325) !important;
       }
     </style>
     
