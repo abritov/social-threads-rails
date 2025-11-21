@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="view-transition" content="same-origin">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -130,10 +131,22 @@
           if (layer) layer.classList.add('dark');
         }
       });
+      
+      // Enable View Transitions API for Unpoly navigation
+      if (document.startViewTransition) {
+        up.on('up:fragment:loaded', function(event) {
+          const render = event.renderOptions.onRendered;
+          event.renderOptions.onRendered = function() {
+            document.startViewTransition(function() {
+              if (render) render();
+            });
+          };
+        });
+      }
     </script>
   </head>
 
-  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200" data-controller="view-transition">
     <main class="container mx-auto px-5 pt-2">
       <%= yield %>
     </main>

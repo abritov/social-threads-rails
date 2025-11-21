@@ -1,7 +1,11 @@
 <%= form_with(model: [post, comment],
               class: "flex flex-col space-y-3",
               id: "comment_form_post_#{post.id}",
-              html: { "up-target": "#comments-drawer", "up-follow": "" },
+              html: { 
+                "up-target": "#comments-drawer", 
+                "up-follow": "",
+                "up-transition": "fade-in"
+              },
               data: { turbo: false }) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation_comment_<%= post.id %>" class="bg-red-50 text-red-700 px-3 py-2 text-sm font-medium rounded-lg">

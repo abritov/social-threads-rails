@@ -5,8 +5,16 @@
     <h1 class="font-bold text-3xl text-gray-900 dark:text-gray-100">Feed</h1>
     <div class="flex items-center space-x-6">
       <% if user_signed_in? %>
-        <%= link_to "Follow", people_path, class: "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 font-medium transition-colors duration-200" %>
-        <%= link_to profile_path, class: "rounded-full p-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors duration-200 shadow-sm" do %>
+        <%= link_to "Follow", people_path, 
+            class: "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 font-medium transition-colors duration-200",
+            data: { turbo: false },
+            "up-follow": "",
+            "up-transition": "cross-fade" %>
+        <%= link_to profile_path, 
+            class: "rounded-full p-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors duration-200 shadow-sm",
+            data: { turbo: false },
+            "up-follow": "",
+            "up-transition": "cross-fade" do %>
           <% if current_user.avatar.attached? %>
             <%= image_tag current_user.avatar, class: "w-7 h-7 rounded-full object-cover" %>
           <% else %>

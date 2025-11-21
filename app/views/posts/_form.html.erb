@@ -1,4 +1,6 @@
-<%= form_with(model: post, class: "flex flex-col space-y-3", id: "post_form") do |form| %>
+<%= form_with(model: post, 
+              class: "flex flex-col space-y-3", 
+              id: "post_form") do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation" class="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 px-3 py-2 text-sm font-medium rounded-lg border border-red-200 dark:border-red-800">
       <h2 class="font-bold mb-1">Oops! <%= pluralize(post.errors.count, "error") %> occurred:</h2>

@@ -11,6 +11,93 @@
 
 @import "tailwindcss";
 
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+/* Smooth fade for page transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+/* Slide up animation for new posts */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in animation for comments */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply view transition names to key elements */
+.post-item {
+  view-transition-name: var(--post-id);
+}
+
+.comment-item {
+  view-transition-name: var(--comment-id);
+}
+
+/* Animate new posts */
+::view-transition-new(.post-item) {
+  animation: slide-up 0.4s ease-out;
+}
+
+/* Animate new comments */
+::view-transition-new(.comment-item) {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Fallback animations for browsers without View Transition API */
+.post-item[up-source] {
+  animation: slide-up 0.4s ease-out;
+}
+
+.comment-item[up-source] {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Cross-fade animation for navigation */
+@keyframes cross-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Unpoly transition support */
+[up-transition="slide-up"] {
+  animation: slide-up 0.4s ease-out;
+}
+
+[up-transition="fade-in"] {
+  animation: fade-in 0.3s ease-out;
+}
+
+[up-transition="cross-fade"] {
+  animation: cross-fade 0.3s ease-in-out;
+}
+
 /* Class-based dark mode */
 .dark .dark\:bg-gray-900 {
   background-color: oklch(21% .034 264.665) !important;

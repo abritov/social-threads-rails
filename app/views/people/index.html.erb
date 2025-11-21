@@ -1,7 +1,11 @@
 <% content_for :title, "Find Users" %>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-  <%= link_to "← Back to Feed", root_path, class: "inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-4 transition-colors duration-200" %>
+  <%= link_to "← Back to Feed", root_path, 
+      class: "inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-4 transition-colors duration-200",
+      data: { turbo: false },
+      "up-follow": "",
+      "up-transition": "cross-fade" %>
   
   <h1 class="font-bold text-3xl text-gray-900 dark:text-gray-100 mb-6">Find Users</h1>
 
@@ -10,7 +14,11 @@
       <% @users.each do |user| %>
         <div class="flex items-center justify-between p-4 sm:p-5">
           <div class="flex items-center space-x-3">
-            <%= link_to person_path(user), class: "flex items-center space-x-3 group" do %>
+            <%= link_to person_path(user), 
+                class: "flex items-center space-x-3 group",
+                data: { turbo: false },
+                "up-follow": "",
+                "up-transition": "cross-fade" do %>
               <% if user.avatar.attached? %>
                 <%= image_tag url_for_active_storage(user.avatar), class: "w-10 h-10 rounded-full object-cover border border-gray-300 dark:border-gray-600" %>
               <% else %>
